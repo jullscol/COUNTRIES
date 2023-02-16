@@ -9,7 +9,7 @@ export default function LandingPage() {
         <h1 className='landing__title welcome'><b>Welcome</b></h1>
         <h2 className='landing__title'>To My Henry Project</h2>
         <Link to = '/Home'>
-          <button className='landing__button'>Get In</button>
+          <button className='landing__button'>Start</button>
         </Link>
       </div>
     </div>

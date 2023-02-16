@@ -1,7 +1,7 @@
 import React from "react";
 import './Card.css';
 
-export default function Card ({ name, flag, continent, capital, population, id }) {
+export default function Card ({ name, flag, continent, capital, population, }) {
   return (
     <div className="Card_Box">
       <h2 className="Card__Name">{name}</h2>

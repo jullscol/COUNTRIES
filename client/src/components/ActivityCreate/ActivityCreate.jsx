@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { postActivities, getActivities } from "../../redux/actions";
 import { WINTER, SUMMER, AUTUM, SPRING } from "../../const/Const";
 import NavBar from "../NavBar/NavBar.jsx";
@@ -8,9 +8,15 @@ import "./ActivityCreate.css";
 
 function validate (input) {
   let errors = {};
+  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+
   if (!input.name) {
     errors.name = 'You must fill this field above';
-  } else if (!input.duration) {
+  } else if (!regexName.test(input.name.trim())) {
+    errors.name = "El  campo 'Nombre' solo acepta letras y espacios en blanco";
+  } 
+
+  else if (!input.duration) {
     errors.duration = 'You must fill this field';
   } else if (!input.difficulty) {
     errors.difficulty = 'You must choose the difficulty';
@@ -84,12 +90,16 @@ export default function ActivityCreate() {
   };
 
   return (
+    
     <div className="Activity__Container">
-      <div>
+
+      <div> 
         <NavBar/>
       </div>
-
-      <div className='Activity__Box'>        
+     
+      <div className='Activity__Box'>    
+      
+    
         <form className="Activity__Form" onSubmit={handleSubmit}>
           <h3 className="Form__Title">Plan your activity</h3>
           <div className="Form__Input">
@@ -167,7 +177,13 @@ export default function ActivityCreate() {
             <button className="Form__Button" type='submit'>Create Activity</button>
           </div>
         </form>
-      </div>
+
+                     
+      </div> 
+      <Link to = '/Home'>
+          <button className='Form__Button'>Back</button>
+        </Link>
     </div>
+
   )
 }

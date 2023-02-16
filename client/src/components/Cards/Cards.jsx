@@ -1,16 +1,15 @@
 import React, {useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getCountries, filterByContinent, filterByActivity, orderByName, orderByPopulation, getActivities } from "../../redux/actions/index";
-import { LESS_POPULATION, HIGHER_POPULATION, ALL, ALL_AFRICA, ALL_ASIA, ALL_EUROPE, ALL_OCEANIA, ASC, DESC } from "../../const/Const";
+import { getCountries, filterByContinent, orderByName, orderByPopulation, } from "../../redux/actions/index";
+import { LESS_POPULATION, HIGHER_POPULATION, ALL_AMERICA, ALL, ALL_AFRICA, ALL_ASIA, ALL_EUROPE, ALL_OCEANIA, ASC, DESC } from "../../const/Const";
 import Card from '../Card/Card.jsx';
 import Paginado from '../Paginado/Paginado.jsx';
 import './Cards.css';
 
 export default function Cards () {
   const dispatch = useDispatch();
-  const activities = useSelector((state) => state.activities);
-
+  
   const countries = useSelector((state) => state.countries);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,10 +33,7 @@ export default function Cards () {
     setCurrentPage(1);
   }
 
-  function handleFilterActivity(e) {
-    dispatch(filterByActivity(e.target.value));
-    setCurrentPage(1);
-  }
+ 
 
   function handleSort(e) {
     e.preventDefault();
@@ -55,7 +51,7 @@ export default function Cards () {
 
   useEffect(() => {
     dispatch(getCountries());
-    dispatch(getActivities());
+    
   }, [dispatch]);
 
   return (
@@ -84,15 +80,7 @@ export default function Cards () {
             <option value={LESS_POPULATION}>LOWER POPULATION</option>
           </select>
 
-          <select 
-            className='Filter__Option'
-            onChange={(e) => handleFilterActivity(e)}
-          >
-            <option value='todos'>Activities</option>
-            {activities.map((v) => (
-              <option value={v.name}>{v.name}</option>
-            ))}
-          </select>
+        
 
           <select
             className='Filter__Option'
@@ -100,7 +88,7 @@ export default function Cards () {
           >
             <option value={ALL}>All Continents</option>
             <option value={ALL_AFRICA}>Africa</option>
-            <option value="Americas">America</option>
+            <option value={ALL_AMERICA}>America</option>
             <option value={ALL_ASIA}>Asia</option>
             <option value={ALL_EUROPE}>Europe</option>
             <option value={ALL_OCEANIA}>Oceania</option>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getDetail, restartDetail } from '../../redux/actions';
 import NavBar from '../NavBar/NavBar.jsx';
-import './Detail.css'; 
+import './Detail.css';
 
 export default function Detail(props) {
   const dispatch = useDispatch();
@@ -60,8 +60,11 @@ export default function Detail(props) {
           </div> : <div className='loading'>
             <h1> Loading... </h1>
           </div>
-
+           
       }</div>
+       <Link to = '/Home'>
+          <button className='Form__Button'>Back</button>
+        </Link>
     </div>
   );
 }
