@@ -1,4 +1,4 @@
-import { RESET, ORDER_BY_POPULATION, FILTER_BY_ACTIVITIES, FILTER_BY_CONTINENT, GET_COUNTRIES, ORDER_BY_NAME, SEARCH_COUNTRIES, ASC, GET_ACTIVITIES, POST_ACTIVITIES, DETAIL, HIGHER_POPULATION } from '../../const/Const'
+import {ORDER_BY_POPULATION, FILTER_BY_ACTIVITIES, FILTER_BY_CONTINENT, GET_COUNTRIES, ORDER_BY_NAME, SEARCH_COUNTRIES, ASC, GET_ACTIVITIES, POST_ACTIVITIES, DETAIL, HIGHER_POPULATION } from '../../const/Const'
 
 const initialState = {
   countries: [],
@@ -57,11 +57,7 @@ export default function rootReducer(state = initialState, action) {
         detail: action.payload
       }
 
-    case RESET:
-      return {
-        ...state,
-        detail: []
-      }
+    
 
     case SEARCH_COUNTRIES:
       return {

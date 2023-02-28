@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-  RESET,
+  
   ORDER_BY_POPULATION,
   FILTER_BY_ACTIVITIES,
   FILTER_BY_CONTINENT,
@@ -108,10 +108,4 @@ export function getDetail(id) {
   };
 }
 
-export function restartDetail() {
-  return (dispatch) => {
-    dispatch({
-      type: RESET,
-    });
-  };
-}
+

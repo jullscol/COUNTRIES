@@ -17,8 +17,7 @@ function App() {
           <Route exact path = '/Activity' component = {ActivityCreate}/>
           <Route exact path = '/Activities' component = {ActivitiesList}/>
           <Route exact path = '/Home/:id' component = {Detail}/>
-          <Route exact path = '/Home/:*' component = {Detail}/>
-          
+              
         </Switch>
       </div>
     </BrowserRouter>

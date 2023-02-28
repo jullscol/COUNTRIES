@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { postActivities, getActivities } from "../../redux/actions";
 import { WINTER, SUMMER, AUTUM, SPRING } from "../../const/Const";
 import NavBar from "../NavBar/NavBar.jsx";
@@ -9,19 +9,21 @@ import "./ActivityCreate.css";
 function validate (input) {
   let errors = {};
   let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-
+  let ExpRegNumbers= /^[0-9]+$/;
+   
+    
   if (!input.name) {
     errors.name = 'You must fill this field above';
-  } else if (!regexName.test(input.name.trim())) {
-    errors.name = "El  campo 'Nombre' solo acepta letras y espacios en blanco";
-  } 
-
-  else if (!input.duration) {
-    errors.duration = 'You must fill this field';
-  } else if (!input.difficulty) {
-    errors.difficulty = 'You must choose the difficulty';
+  }else if (!regexName.test(input.name.trim())) {
+    errors.name = "The 'Activity' field only accepts letters and whitespace";
+  }else if (!input.duration) {
+    errors.duration = 'You must fill this field with a number';
+  }else if(!ExpRegNumbers.test(input.duration.trim())) {
+    errors.duration = "The 'Duration' field only accepts numbers";
+  }else if (!input.difficulty) {
+    errors.difficulty = 'You must choose the difficulty maximun 5';
   } else if (!input.season) {
-    errors.difficulty = 'You must choose the season';
+    errors.season = 'You must choose the season';
   } else if (!input.countryId === []) {
     errors.countryId = 'You must select a country'
   }
@@ -90,16 +92,12 @@ export default function ActivityCreate() {
   };
 
   return (
-    
     <div className="Activity__Container">
-
-      <div> 
+      <div>
         <NavBar/>
       </div>
-     
-      <div className='Activity__Box'>    
-      
-    
+
+      <div className='Activity__Box'>        
         <form className="Activity__Form" onSubmit={handleSubmit}>
           <h3 className="Form__Title">Plan your activity</h3>
           <div className="Form__Input">
@@ -115,7 +113,7 @@ export default function ActivityCreate() {
           </div>
           {errors.name && <p className="error">{errors.name}</p>}
           <div className="Form__Input">
-            <label> Duration </label>
+            <label> Duration in Hours </label>
             <input
               className="Form__Field"
               type='text'
@@ -123,7 +121,7 @@ export default function ActivityCreate() {
               name='duration'
               placeholder="Write an activity"
               onChange={handleChange}
-            />
+            /> {/* <p>Hours</p> */}
           </div>
           {errors.duration && <p className="error">{errors.duration}</p>}
           <div className="Form__Input">
@@ -177,13 +175,7 @@ export default function ActivityCreate() {
             <button className="Form__Button" type='submit'>Create Activity</button>
           </div>
         </form>
-
-                     
-      </div> 
-      <Link to = '/Home'>
-          <button className='Form__Button'>Back</button>
-        </Link>
+      </div>
     </div>
-
   )
 }

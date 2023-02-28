@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getDetail, restartDetail } from '../../redux/actions';
+import { getDetail,} from '../../redux/actions';
 import NavBar from '../NavBar/NavBar.jsx';
 import './Detail.css';
 
@@ -9,8 +9,7 @@ export default function Detail(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(restartDetail())
-    dispatch(getDetail(props.match.params.id))
+     dispatch(getDetail(props.match.params.id))
   }, [dispatch, props.match.params.id])
 
   const countriesDetail = useSelector((state) => state.detail)

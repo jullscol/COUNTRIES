@@ -11,7 +11,7 @@ export default function SearchBar() {
     e.preventDefault();
     if (search.length === 0) return alert('You should introduce a country');
     dispatch(searchCountries(search))
-    setSearch('')
+   setSearch('')
   }
 
   function onInputChange(e) {

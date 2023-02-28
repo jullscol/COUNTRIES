@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Activity from "../Activity/Activity.jsx";
 import NavBar from "../NavBar/NavBar.jsx";
+import { Link } from "react-router-dom";
 import "./ActivityList.css";
 
 export default function ActivityList() {
@@ -20,12 +21,15 @@ export default function ActivityList() {
                 name={acc.name}
                 duration={acc.duration}
                 season={acc.season}
-                difficulty={acc.name}
+                difficulty={acc.difficulty}
               /> 
             </div>
           )
         })}
       </div>
+      <Link to = '/Home'>
+          <button className='Form__Button'>Back</button>
+        </Link>
     </div>
   )
 }
